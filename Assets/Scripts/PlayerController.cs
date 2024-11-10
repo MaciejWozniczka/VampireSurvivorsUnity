@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        
     }
 
     void Update()
@@ -20,13 +19,28 @@ public class PlayerController : MonoBehaviour
 
         transform.position += moveInput * moveSpeed * Time.deltaTime;
 
+        if (moveInput.x == 1f)
+        {
+            if (transform.localScale.x > 0)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+        }
+        else if (moveInput.x == -1f)
+        {
+            if (transform.localScale.x < 0)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+        }
+
         if (moveInput == Vector3.zero)
         {
-            animator.SetBool("isMoving", true);
+            animator.SetBool("isMoving", false);
         }
         else
         {
-            animator.SetBool("isMoving", false);
+            animator.SetBool("isMoving", true);
         }
     }
 }
