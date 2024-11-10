@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 
+        moveInput.Normalize();
+
         transform.position += moveInput * moveSpeed * Time.deltaTime;
     }
 }
